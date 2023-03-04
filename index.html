@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Universe Hub</title>
+
+    <!-- daisyUI cdn link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.51.3/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- font awesome kit link -->
+        <script
+        src="https://kit.fontawesome.com/95c7008c99.js"
+        crossorigin="anonymous">
+        </script>
+  </head>
+  <body>
+    <!-- !website title section start -->
+    <section class="my-12 container max-w-[1240px] mx-auto">
+      <div class="flex flex-col items-center justify-center gap-8">
+        <h1 class="font-bold text-[#111111] text-4xl">AI Universe Hub</h1>
+        <button id="sortById"
+          class="px-4 py-3 bg-[#EB5757] font-semibold text-xl rounded-lg text-white"
+        >
+          Sort By Date
+        </button>
+      </div>
+    </section>
+    <!-- !website title section end -->
+
+    <main>
+      <section class="container max-w-[1240px] mx-auto">
+        <div id="cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 px-6"></div>
+      </section>
+    </main>
+
+    <section
+      class="flex items-center justify-center container max-w-[1240px] mx-auto"
+    >
+      <progress id="loading" class="progress w-56 my-10 hidden"></progress>
+    </section>
+
+   <!-- see more button create section  start-->
+    <section
+      class="my-12 flex items-center justify-center container max-w-[1240px] mx-auto"
+    >
+      <button
+        id="moreItemBtn"
+        class="px-4 py-3 bg-[#EB5757] font-semibold text-xl rounded-lg text-white hidden"
+      >
+        See More
+      </button>
+    </section>
+    <!-- see more button section end  -->
+
+    <!-- The button to open modal -->
+
+    <input type="checkbox" id="popUp" class="modal-toggle" />
+    <div class="modal">
+      <div class="modal-box w-11/12 max-w-5xl relative">
+        <label for="popUp" class="btn btn-sm btn-circle absolute right-2 top-2"
+          >✕</label
+        >
+
+        <div id="modal-container">
+          
+        </div>
+
+      </div>
+    </div>
+
+    <!-- local script link here -->
+    <script src="js/script.js"></script>
+
+    <!-- daisyUI cdn link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </body>
+</html>

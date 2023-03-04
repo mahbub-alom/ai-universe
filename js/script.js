@@ -1,4 +1,4 @@
-// !load data function
+// load data function
 const loadData = async (callback) => {
     try {
       const apiUrl = `https://openapi.programming-hero.com/api/ai/tools`;
@@ -67,7 +67,7 @@ const loadData = async (callback) => {
     appendData(tools, cards);
   };
   
-  // !showAllData function start
+  // showAllData function start
   
   const showAllData = (data) => {
     let {
@@ -130,7 +130,7 @@ const loadData = async (callback) => {
     <div class="rounded-2xl bg-[rgba(235,87,87,0.05)] shadow-md p-7">
     <h1 class="text-xl font-bold text-[#111111]">${description}</h1>
     <div class="flex flex-col sm:flex-row gap-4 items-center justify-between my-5">
-    ${monthly(pricing)}
+    ${month(pricing)}
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <div>
@@ -181,29 +181,27 @@ const loadData = async (callback) => {
   };
   
   // !dynamic li create function
-  const createItem = (data) => {
+  const createItem = (prop) => {
     let li = "";
-    if (Array.isArray(data)) {
-      data.forEach((element) => {
+    if (Array.isArray(prop)) {
+      prop.forEach((element) => {
         li += `<li>${element}</li>`;
       });
       return li;
-    } else if (data === null) {
+    } else if (prop === null) {
       li += `<li>No Data Found</li>`;
       return li;
     } else {
-      for (const key in data) {
-        li += `<li>${data[key].feature_name}</li>`;
+      for (const key in prop) {
+        li += `<li>${prop[key].feature_name}</li>`;
       }
       return li;
     }
   };
+
+  // month plan function
   
-//   pore korbo
-  
-  // monthly plan function
-  
-  const monthly = (arr) => {
+  const month = (arr) => {
     let element = "";
     if (Array.isArray(arr)) {
       for (const key in arr) {
@@ -215,40 +213,38 @@ const loadData = async (callback) => {
         <p>${arr[key].plan !== "Free" ? arr[key].plan : "Basic"}</p>
         </div>`;
       }
-    }else{
+    }
+    else{
       element+= `
-      <div
-        class="rounded-md bg-white w-full h-[100px] text-[#03A30A] flex items-center justify-center text-center font-semibold"
-      >
+      <div class="rounded-md bg-white w-full h-[100px] text-[#03A30A] flex items-center justify-center text-center font-semibold">      
       <p>No Data Found</p>
       </div>`;
     }
-  
     return element;
   };
   
-  // !dynamic data display by id
+  // dynamic data id
   const dataById = async (id) => {
     try {
       const apiUrl = `https://openapi.programming-hero.com/api/ai/tool/${id}`;
       const res = await fetch(apiUrl);
       const data = await res.json();
       showingUpDetails(data, id);
-    } catch (err) {
+    } 
+    catch (err) {
       console.log(err);
     }
   };
   
-  
-  // !sort by date function
-  const sortByDate = ({data:{tools}}) => {
+  // sort by date code is here
+  const serialByDate = ({data:{tools}}) => {
     const data = tools.sort(function(a,b){    
       return (new Date(b.published_in) - new Date(a.published_in));
     })
-    displaySortData(data);
+    sortData(data);
   };
   
-  const displaySortData = (tools) => {
+  const sortData = (tools) => {
   
     const cards = document.getElementById("cards");
     cards.innerHTML = "";
@@ -260,15 +256,12 @@ const loadData = async (callback) => {
     } else {
       moreItemBtn.classList.remove("hidden");
     }
-  
     appendData(tools, cards);
-  
-  };
-  
-  
-  // !sort by date event listener
+    };
+
+  // sort by date event listener
   document.getElementById("sortById").addEventListener("click",()=>{
-    loadData(sortByDate)
+    loadData(serialByDate)
   })
   
   
